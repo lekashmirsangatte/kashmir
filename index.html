@@ -137,14 +137,6 @@ footer strong { color: var(--vert); }
 .save-status.ok { color: var(--vert); }
 .save-status.err { color: #ff5555; }
 
-/* CONFIG TOKEN */
-.config-box { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1.2rem; margin-bottom: 1.5rem; }
-.config-box h3 { font-size: .82rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--vert); margin-bottom: .8rem; }
-.config-box p { font-size: .8rem; color: #666; margin-bottom: .8rem; line-height: 1.6; }
-.config-box input { width: 100%; background: #111; border: 1px solid #2a2a2a; border-radius: 4px; color: #eee; padding: .5rem .7rem; font-size: .85rem; font-family: monospace; }
-.config-box input:focus { outline: none; border-color: var(--vert); }
-.config-box .hint { font-size: .75rem; color: #555; margin-top: .4rem; }
-.config-box .hint a { color: var(--vert); }
 </style>
 </head>
 <body>
@@ -218,17 +210,6 @@ footer strong { color: var(--vert); }
     </div>
   </div>
   <div class="editor-body">
-
-    <!-- Config GitHub -->
-    <div class="config-box" id="config-box">
-      <h3>🔑 Configuration GitHub (une seule fois)</h3>
-      <p>Collez votre token GitHub ici. Il sera sauvegardé dans ce navigateur uniquement.</p>
-      <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" oninput="saveToken()">
-      <p class="hint">
-        Créer un token : <a href="https://github.com/settings/tokens/new?scopes=repo&description=Kashmir+Menu+Editor" target="_blank">github.com/settings/tokens</a>
-        → Note: "Kashmir Menu Editor" → Scope: cocher <strong>repo</strong> → Generate token
-      </p>
-    </div>
 
     <div id="editor-sections">
       <!-- Injecté par JS -->
@@ -525,7 +506,8 @@ var MENU_DATA = [
 var GITHUB_OWNER = "lekashmirsangatte";   // nom d'utilisateur GitHub
 var GITHUB_REPO  = "kashmir";              // nom du dépôt
 var GITHUB_FILE  = "index.html";           // fichier à mettre à jour
-var EDITOR_PASSWORD = "kashmir2025";       // mot de passe de l'éditeur
+var EDITOR_PASSWORD = "AliCélineKashmir62!";
+var GITHUB_TOKEN    = "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";       // mot de passe de l'éditeur
 
 /* ================================================================
    RENDU DE LA CARTE PUBLIQUE
@@ -639,11 +621,8 @@ function addItem(si, ci) {
    SAUVEGARDE SUR GITHUB
    ================================================================ */
 async function saveToGitHub() {
-  var token = document.getElementById('gh-token').value.trim();
-  if (!token) {
-    setStatus('err', '⚠ Entrez votre token GitHub ci-dessus');
-    return;
-  }
+  var token = GITHUB_TOKEN;
+
 
   var btn = document.getElementById('btn-save');
   btn.disabled = true;

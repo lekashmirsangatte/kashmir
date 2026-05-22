@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Kashmir – Carte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ===========================
+     COULEURS & VARIABLES
+     Pour changer la couleur principale : modifiez --vert ci-dessous
+  =========================== */
+  :root {
+    --vert:    #3BB54A;
+    --vert-dk: #2a8a37;
+    --noir:    #111111;
+    --blanc:   #ffffff;
+    --creme:   #f9f6f0;
+    --gris:    #e8e4de;
+    --texte:   #222222;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--creme);
+    color: var(--texte);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* ---- HEADER ---- */
+  header {
+    background: var(--vert);
+    color: var(--noir);
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(0,0,0,0.03) 18px,
+      rgba(0,0,0,0.03) 19px
+    );
+    pointer-events: none;
+  }
+  .logo-symbol {
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 12vw, 5rem);
+    letter-spacing: 0.05em;
+    line-height: 0.9;
+    margin-bottom: 0.4rem;
+  }
+  header .subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  header .location {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+  }
+  .badges {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .badge {
+    background: rgba(0,0,0,0.12);
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---- INFOS PRATIQUES ---- */
+  .infos-bar {
+    background: var(--noir);
+    color: var(--blanc);
+    text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+  }
+  .infos-bar a { color: var(--vert); text-decoration: none; }
+
+  /* ---- NOTICE ---- */
+  .notice {
+    background: var(--vert);
+    color: var(--noir);
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---- NAVIGATION PAR ONGLETS ---- */
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--noir);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    color: var(--vert);
+    border-bottom-color: var(--vert);
+  }
+  .tab-btn:hover { color: var(--blanc); }
+
+  /* ---- CONTENU ---- */
+  main { max-width: 700px; margin: 0 auto; padding: 0 0 3rem; }
+
+  .section {
+    display: none;
+    padding: 1.5rem 1.2rem 0;
+    animation: fadeIn 0.2s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ---- TITRES DE SOUS-SECTIONS ---- */
+  .cat-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    color: var(--vert-dk);
+    border-bottom: 2px solid var(--vert);
+    padding-bottom: 0.2rem;
+    margin: 1.8rem 0 1rem;
+  }
+  .cat-title:first-child { margin-top: 0.5rem; }
+
+  .sub-title {
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #777;
+    margin: 1.2rem 0 0.6rem;
+  }
+
+  /* ---- ITEM DE MENU ---- */
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--gris);
+  }
+  .item:last-child { border-bottom: none; }
+
+  .item-left { flex: 1; }
+  .item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .item-desc {
+    font-size: 0.8rem;
+    color: #777;
+    font-style: italic;
+    margin-top: 0.1rem;
+    line-height: 1.4;
+  }
+  .item-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--vert-dk);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* Items avec prix multiple (bouteille/verre) */
+  .price-multi {
+    text-align: right;
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  .price-multi strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--vert-dk);
+  }
+
+  /* ---- ENCART MENU DU MIDI ---- */
+  .menu-card {
+    background: var(--noir);
+    color: var(--blanc);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .menu-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--vert);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.3rem;
+  }
+  .menu-card .prix-menu {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    color: var(--vert);
+    line-height: 1;
+    margin: 0.5rem 0 1rem;
+  }
+  .menu-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-card li {
+    font-size: 0.88rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    gap: 0.6rem;
+  }
+  .menu-card li::before { content: '›'; color: var(--vert); font-weight: bold; }
+  .menu-card .note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.8rem;
+    font-style: italic;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--noir);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    margin-top: 2rem;
+  }
+  footer strong { color: var(--vert); }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="logo-symbol">☽★</div>
+  <h1>Le Kashmir</h1>
+  <p class="subtitle">Gastronomie Pakistanaise &amp; Indienne</p>
+  <p class="location">Sangatte</p>
+  <div class="badges">
+    <span class="badge">☑ Halal</span>
+    <span class="badge">🚫 Sans alcool</span>
+    <span class="badge">📦 À emporter −10%</span>
+  </div>
+</header>
+
+<div class="infos-bar">
+  📍 919 Route Départementale 940, 62231 Sangatte &nbsp;|&nbsp;
+  📞 <a href="tel:0686256306">06 86 25 63 06</a> / <a href="tel:0321360295">03 21 36 02 95</a>
+</div>
+
+<div class="notice">Tous nos prix sont TTC, service compris</div>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="tabs" role="tablist">
+  <button class="tab-btn active" onclick="showTab('boissons')" role="tab">Boissons</button>
+  <button class="tab-btn" onclick="showTab('entrees')" role="tab">Entrées</button>
+  <button class="tab-btn" onclick="showTab('pains')" role="tab">Pains &amp; Riz</button>
+  <button class="tab-btn" onclick="showTab('viandes')" role="tab">Viandes</button>
+  <button class="tab-btn" onclick="showTab('poissons')" role="tab">Poissons</button>
+  <button class="tab-btn" onclick="showTab('veggie')" role="tab">Végétarien</button>
+  <button class="tab-btn" onclick="showTab('byrianis')" role="tab">Byrianis</button>
+  <button class="tab-btn" onclick="showTab('desserts')" role="tab">Desserts</button>
+  <button class="tab-btn" onclick="showTab('menu')" role="tab">Menu Midi</button>
+</nav>
+
+<main>
+
+<!-- ===================== BOISSONS ===================== -->
+<section id="boissons" class="section active">
+
+  <h2 class="cat-title">Le Petit Béret – Sans alcool</h2>
+  <p class="sub-title">Pétillant 0% Alcool</p>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Pétillant 0% Alcool</div></div>
+    <div class="price-multi">
+      Btle 75 cl <strong>30,00 €</strong><br>
+      Flûte 15 cl <strong>7,00 €</strong>
+    </div>
+  </div>
+
+  <p class="sub-title">Vins 0% Alcool</p>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Rouge</div></div>
+    <div class="price-multi">Btle 74 cl <strong>25,00 €</strong><br>Verre 15 cl <strong>6,00 €</strong></div>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Blanc</div></div>
+    <div class="price-multi">Btle 74 cl <strong>25,00 €</strong><br>Verre 15 cl <strong>6,00 €</strong></div>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Rosé</div></div>
+    <div class="price-multi">Btle 74 cl <strong>25,00 €</strong><br>Verre 15 cl <strong>6,00 €</strong></div>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Bière 0% Alcool</div></div>
+    <div class="price-multi">Btle 33 cl <strong>9,00 €</strong></div>
+  </div>
+
+  <h2 class="cat-title">Lassis &amp; Eaux</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Lassi – 50 cl</div>
+      <div class="item-desc">Nature, Salé, Mangue, Banane, Pistache, Menthe ou Rose</div>
+    </div>
+    <span class="item-price">4,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Eau Minérale</div></div>
+    <div class="price-multi">50 cl <strong>3,50 €</strong><br>100 cl <strong>5,00 €</strong></div>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Eau Pétillante</div></div>
+    <div class="price-multi">50 cl <strong>3,50 €</strong><br>100 cl <strong>5,00 €</strong></div>
+  </div>
+
+  <h2 class="cat-title">Sodas &amp; Jus</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Sodas – 33 cl</div>
+      <div class="item-desc">Coca, Coca Zero, Coca Cherry, Orangina, Perrier</div>
+    </div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Sodas – 25 cl</div>
+      <div class="item-desc">Schweppes Agrumes, Ice Tea, Fuze Tea, Sprite, Fanta Orange</div>
+    </div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Jus de Fruits – 25 cl</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Sirop à l'eau</div></div>
+    <span class="item-price">2,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Diabolo</div></div>
+    <span class="item-price">3,00 €</span>
+  </div>
+
+  <h2 class="cat-title">Mocktails</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Miss Lincoln</div>
+      <div class="item-desc">Sirop de rose, sirop de fleur de sureau, limonade, eau pétillante</div>
+    </div>
+    <span class="item-price">7,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Mocktail Exotique</div>
+      <div class="item-desc">Jus de goyave, jus d'orange, sirop de grenadine</div>
+    </div>
+    <span class="item-price">7,00 €</span>
+  </div>
+
+  <h2 class="cat-title">Boissons Chaudes</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Thé Pakistanais</div>
+      <div class="item-desc">Thé avec du lait</div>
+    </div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Thé Menthe Fraîche</div></div>
+    <span class="item-price">3,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Thé Cardamome</div>
+      <div class="item-desc">Cardamome vert</div>
+    </div>
+    <span class="item-price">3,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Thé Frères Damann</div></div>
+    <span class="item-price">2,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Espresso / Décaféiné</div></div>
+    <span class="item-price">2,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Double Espresso</div></div>
+    <span class="item-price">2,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Café Crème</div></div>
+    <span class="item-price">3,00 €</span>
+  </div>
+</section>
+
+<!-- ===================== ENTRÉES ===================== -->
+<section id="entrees" class="section">
+
+  <h2 class="cat-title">Les Entrées</h2>
+  <p class="sub-title">Pakoras (beignets)</p>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Pakora Oignons</div>
+      <div class="item-desc">Beignets d'oignon</div>
+    </div>
+    <span class="item-price">5,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Aloo Pakora</div>
+      <div class="item-desc">Beignets de pomme de terre</div>
+    </div>
+    <span class="item-price">5,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Began Pakora</div>
+      <div class="item-desc">Beignets d'aubergine</div>
+    </div>
+    <span class="item-price">7,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Pakora Crevettes</div>
+      <div class="item-desc">Beignets de crevettes</div>
+    </div>
+    <span class="item-price">8,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Pakora Mix</div>
+      <div class="item-desc">Beignets d'oignons, de pomme de terre et de poivron vert</div>
+    </div>
+    <span class="item-price">5,50 €</span>
+  </div>
+
+  <p class="sub-title">Samossas &amp; Raïtas</p>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Sabzi Samossas</div>
+      <div class="item-desc">Samossas aux légumes – pomme de terre et petits pois</div>
+    </div>
+    <span class="item-price">5,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Samossas Viande Hachée</div>
+      <div class="item-desc">Viande de bœuf et petit pois</div>
+    </div>
+    <span class="item-price">7,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Raïta</div>
+      <div class="item-desc">Yaourt aux légumes et aux épices</div>
+    </div>
+    <span class="item-price">4,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Raïta Prawn</div>
+      <div class="item-desc">Yaourt aux crevettes, aux légumes et aux épices</div>
+    </div>
+    <span class="item-price">6,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Papadum ×2</div>
+      <div class="item-desc">Farine de lentille et cumin</div>
+    </div>
+    <span class="item-price">2,00 €</span>
+  </div>
+
+  <h2 class="cat-title">Cuisine au Tandoor</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Poulet Tandoori</div>
+      <div class="item-desc">Poulet mariné au yaourt et aux épices puis doré au tandoor</div>
+    </div>
+    <span class="item-price">8,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Gambas Tandoori</div>
+      <div class="item-desc">Gambas marinées aux épices et aromates et cuites au tandoor</div>
+    </div>
+    <span class="item-price">19,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Poulet Tikka</div>
+      <div class="item-desc">Poulet mariné aux épices cuit en brochette au tandoor</div>
+    </div>
+    <span class="item-price">8,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Agneau Tikka</div>
+      <div class="item-desc">Agneau mariné aux épices cuit en brochette au tandoor</div>
+    </div>
+    <span class="item-price">9,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Poisson Tikka</div>
+      <div class="item-desc">Poisson mariné aux épices cuit en brochette au tandoor</div>
+    </div>
+    <span class="item-price">9,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Seekh Kebab</div>
+      <div class="item-desc">Brochette de viande hachée de bœuf épicé et cuit au tandoor</div>
+    </div>
+    <span class="item-price">9,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Assiette Mixte</div>
+      <div class="item-desc">2 agneaux tikka, 2 poulets tikka, 2 poissons tikka, 2 Seekh Kebab, Pakora Mix, Raïta</div>
+    </div>
+    <span class="item-price">26,00 €</span>
+  </div>
+</section>
+
+<!-- ===================== PAINS & RIZ ===================== -->
+<section id="pains" class="section">
+
+  <h2 class="cat-title">Les Pains</h2>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Chapati</div><div class="item-desc">Pain indien à pâte non levée</div></div>
+    <span class="item-price">2,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Nan Nature</div><div class="item-desc">Pain indien à pâte levée</div></div>
+    <span class="item-price">2,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Nan Français au Fromage</div><div class="item-desc">Pain au fromage</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Nan Double Fromage</div><div class="item-desc">Pain au fromage avec double fromage</div></div>
+    <span class="item-price">4,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Aloo Nan</div><div class="item-desc">Pain aux pommes de terre</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Garlic Nan</div><div class="item-desc">Pain à l'ail</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Garlic Nan Fromage</div><div class="item-desc">Pain au fromage et à l'ail</div></div>
+    <span class="item-price">4,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Kasmira Nan</div><div class="item-desc">Pain aux pistaches et aux amandes</div></div>
+    <span class="item-price">3,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Keema Nan</div><div class="item-desc">Pain à la viande hachée de bœuf</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Poulet Tikka Cheese Nan</div><div class="item-desc">Pain fourré au poulet grillé avec fromage</div></div>
+    <span class="item-price">4,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Spicy Nan ⚠️ Très relevé</div><div class="item-desc">Pain au gingembre, piment rouge</div></div>
+    <span class="item-price">3,50 €</span>
+  </div>
+
+  <h2 class="cat-title">Les Riz</h2>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Riz Basmati</div></div>
+    <span class="item-price">3,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Riz Kashmir</div><div class="item-desc">Riz aux fruits secs et confits – sucré</div></div>
+    <span class="item-price">4,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Riz Matar</div><div class="item-desc">Riz au petit pois</div></div>
+    <span class="item-price">4,00 €</span>
+  </div>
+</section>
+
+<!-- ===================== VIANDES ===================== -->
+<section id="viandes" class="section">
+  <p style="font-size:0.8rem;color:#777;margin-bottom:0.5rem;font-style:italic;">Tous les plats sont accompagnés de riz basmati</p>
+
+  <h2 class="cat-title">L'Agneau – 20,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Curry</div><div class="item-desc">Gigot d'agneau à la sauce curry traditionnelle de l'Inde du Nord</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Madras</div><div class="item-desc">Curry de gigot d'agneau monté aux épices de l'Inde du Sud</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Shahi Korma</div><div class="item-desc">Agneau aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Bengan</div><div class="item-desc">Agneau aux aubergines grillées au tandoor</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Vindaloo</div><div class="item-desc">Curry de gigot d'agneau aux pommes de terre et épices indiennes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Tikka Massala</div><div class="item-desc">Gigot d'agneau dorés au Tandoor au beurre, aux tomates, oignons, citron et poivron</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Karaï</div><div class="item-desc">Gigot d'agneau aux oignons, tomates, gingembre et épices</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Palak</div><div class="item-desc">Agneau aux épinards dans une sauce crémeuse aux fines épices indiennes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Agneau Sahi Dal</div><div class="item-desc">Agneau cuisiné aux lentilles indiennes dans une crème avec noix de cajou et amandes</div></div></div>
+
+  <h2 class="cat-title">Le Poulet – 18,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Curry</div><div class="item-desc">Poulet à la sauce curry traditionnelle de l'Inde du Nord</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Madras</div><div class="item-desc">Poulet avec sauce épicée de l'Inde du Sud</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Vindaloo</div><div class="item-desc">Curry de poulet aux pommes de terre, vinaigre, ail et épices indiennes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Shahi Korma</div><div class="item-desc">Poulet aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet au Beurre</div><div class="item-desc">Butter chicken – poulet grillé et sa sauce au beurre</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Tikka Massala</div><div class="item-desc">Poulet cuit au Tandoor au beurre avec poivrons, tomates, oignons et citron</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Karaï</div><div class="item-desc">Poulet aux oignons, tomates, et gingembre</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Chilli Chicken ⚠️</div><div class="item-desc">Poulet, oignons, tomates, poivron, ketchup et chili sauce – très épicé</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Palak</div><div class="item-desc">Poulet aux épinards dans une sauce crémeuse aux fines épices indiennes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poulet Champignons</div><div class="item-desc">Curry de poulet aux champignons parfumé aux épices indiennes</div></div></div>
+
+  <h2 class="cat-title">Le Bœuf – 18,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Keema Mater</div><div class="item-desc">Viande hachée de bœuf, gingembre, ail, petit pois, oignons</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Keema Aloo</div><div class="item-desc">Viande hachée de bœuf, oignons, tomates et pomme de terre</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Dal Kebab</div><div class="item-desc">Viande hachée de bœuf cuit au tandoor, oignons, tomates et lentilles</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Kebab Massala</div><div class="item-desc">Viande hachée de bœuf cuit au tandoor, oignons, tomates, poivrons et citron</div></div></div>
+</section>
+
+<!-- ===================== POISSONS ===================== -->
+<section id="poissons" class="section">
+  <p style="font-size:0.8rem;color:#777;margin-bottom:0.5rem;font-style:italic;">Tous les plats sont accompagnés de riz basmati</p>
+
+  <h2 class="cat-title">Poissons – 18,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Poisson Curry</div><div class="item-desc">Filets de poisson sauce curry</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poisson Massala</div><div class="item-desc">Poisson cuit au Tandoor dans une sauce aux épices, tomates, poivrons, oignons et citron</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poisson Madras</div><div class="item-desc">Filets de poisson servis avec une sauce madras, traditionnelle de l'Inde du Sud</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poisson Champignons</div><div class="item-desc">Filets de poisson aux champignons, tomates, oignons, crème fraîche, amandes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Poisson Palak</div><div class="item-desc">Filets de poisson aux épinards et aux épices</div></div></div>
+
+  <h2 class="cat-title">Crevettes / Jinga – 18,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Jinga Curry</div><div class="item-desc">Crevettes sauce curry</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Jinga Massala</div><div class="item-desc">Crevettes à la sauce aux poivrons, oignons, tomates et citron</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Jinga Malaï</div><div class="item-desc">Crevettes à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Jinga Madras</div><div class="item-desc">Crevettes à la sauce madras traditionnelles de l'Inde du Sud</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Jinga Palak</div><div class="item-desc">Crevettes aux épinards et aux épices</div></div></div>
+
+  <h2 class="cat-title">Gambas – 21,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Gambas Curry</div><div class="item-desc">Gambas grillées au Tandoor avec sauce curry</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Gambas Massala</div><div class="item-desc">Gambas grillées au Tandoor avec sauce aux poivrons, oignons, tomates et citron</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Gambas Malaï</div><div class="item-desc">Gambas grillées au Tandoor à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche</div></div></div>
+</section>
+
+<!-- ===================== VÉGÉTARIEN ===================== -->
+<section id="veggie" class="section">
+  <p style="font-size:0.8rem;color:#777;margin-bottom:0.5rem;font-style:italic;">Tous les plats sont accompagnés de riz basmati</p>
+
+  <h2 class="cat-title">Le Paneer – 12,50 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Palak Paneer</div><div class="item-desc">Épinards avec curry de fromage indien, coriandre fraîche (selon disponibilités)</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Chili Paneer ⚠️</div><div class="item-desc">Curry de fromage indien piquant, poivrons et sauce Chili (selon disponibilités)</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Paneer Massala</div><div class="item-desc">Curry de fromage indien avec oignons, poivrons vert et tomates (selon disponibilité)</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Butter Paneer</div><div class="item-desc">Paneer et sa sauce au beurre (selon disponibilité)</div></div></div>
+
+  <h2 class="cat-title">Légumes (Vegan) – 12,00 €</h2>
+  <div class="item"><div class="item-left"><div class="item-name">Mix Sabzi</div><div class="item-desc">Mélange de légumes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Dal Tadka</div><div class="item-desc">Lentilles, poivrons, oignons et coriandre</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Dal Makhni</div><div class="item-desc">Lentilles préparées à la crème fraîche, noix de coco, noix de cajou et amandes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Champignons Massala</div><div class="item-desc">Curry de champignons aux fines herbes</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Dal Palak</div><div class="item-desc">Lentilles indiennes et épinards épicés</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Aloo Palak</div><div class="item-desc">Pommes de terre et épinards épicés</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Bombay Potatoes</div><div class="item-desc">Pommes de terre, poivrons, sauce curry</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Potatoes Shahi Korma</div><div class="item-desc">Pommes de terre aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Begun Barta</div><div class="item-desc">Caviar d'aubergine</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Pois Chiches Shahi Korma</div><div class="item-desc">Pois chiches avec la sauce aux noix de cajou, noix de coco, amandes et crème fraîche</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Pois Chiches Pomme de Terre</div><div class="item-desc">Pois chiches avec oignons, tomates et pommes de terre</div></div></div>
+  <div class="item"><div class="item-left"><div class="item-name">Pois Chiches Palak</div><div class="item-desc">Pois chiches avec épinards et sauce curry</div></div></div>
+</section>
+
+<!-- ===================== BYRIANIS ===================== -->
+<section id="byrianis" class="section">
+
+  <h2 class="cat-title">Les Byrianis</h2>
+  <p style="font-size:0.8rem;color:#777;margin-bottom:1rem;font-style:italic;">Épicé avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans le riz basmati</p>
+
+  <div class="item">
+    <div class="item-left"><div class="item-name">Agneau Byriани</div></div>
+    <span class="item-price">18,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Poulet Byriани</div></div>
+    <span class="item-price">16,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Sabzi Byriани</div><div class="item-desc">Légumes</div></div>
+    <span class="item-price">15,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Crevettes Byriані</div></div>
+    <span class="item-price">18,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Mixte Spécial Byriані ⭐</div>
+      <div class="item-desc">Poulet, agneau et crevettes</div>
+    </div>
+    <span class="item-price">20,00 €</span>
+  </div>
+</section>
+
+<!-- ===================== DESSERTS ===================== -->
+<section id="desserts" class="section">
+
+  <h2 class="cat-title">Les Desserts</h2>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Sulji Halwa</div>
+      <div class="item-desc">Gâteau de semoule aux fruits secs</div>
+    </div>
+    <span class="item-price">3,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Kulfi</div>
+      <div class="item-desc">Glace indienne maison aux pistaches et cardamome</div>
+    </div>
+    <span class="item-price">4,50 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left">
+      <div class="item-name">Gulab Jamun</div>
+      <div class="item-desc">Gâteau sirop de rose</div>
+    </div>
+    <span class="item-price">4,00 €</span>
+  </div>
+  <div class="item">
+    <div class="item-left"><div class="item-name">Glaces / Sorbets</div></div>
+    <div class="price-multi">
+      1 boule <strong>2,50 €</strong><br>
+      2 boules <strong>3,50 €</strong><br>
+      3 boules <strong>5,00 €</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MENU MIDI ===================== -->
+<section id="menu" class="section">
+
+  <h2 class="cat-title">Menu du Midi</h2>
+  <p style="font-size:0.82rem;color:#777;margin-bottom:1rem;font-style:italic;">Uniquement sur place – Du lundi au vendredi midi (hors week-end et jours fériés)</p>
+
+  <div class="menu-card">
+    <h3>Le Thali &amp; son Nan Français</h3>
+    <div class="prix-menu">15,00 €</div>
+    <ul>
+      <li>Assortiment de plats servis dans un plateau rond en métal</li>
+      <li>Riz basmati, crudités, légumes et raïta</li>
+      <li>Nan Fromage</li>
+      <li><strong>Plat :</strong> Poulet Tikka ou Mix Pakora</li>
+      <li><strong>Dessert :</strong> Glace 1 boule (hors Kulfi) ou Sulji Halwa</li>
+    </ul>
+    <p class="note">Tout changement dans le menu entraîne une tarification à la carte.</p>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <strong>Le Kashmir</strong> – Gastronomie Pakistanaise &amp; Indienne<br>
+  919 Route Départementale 940 – 62231 Sangatte<br>
+  Établissement Halal · Sans alcool · Plats à emporter −10%<br><br>
+  Prix TTC, service compris
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

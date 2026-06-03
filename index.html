@@ -660,7 +660,10 @@ html += '</div>';
         html += '<div><label>Nom du plat</label><input type="text" value="' + escHtml(item.name) + '" onchange="updateItem(' + si + ',' + ci + ',' + ii + ',\'name\',this.value)"></div>';
         html += '<div><label>Description</label><textarea onchange="updateItem(' + si + ',' + ci + ',' + ii + ',\'desc\',this.value)">' + escHtml(item.desc) + '</textarea></div>';
         html += '<div class="price-field"><label>Prix</label><input type="text" value="' + escHtml(item.price) + '" onchange="updateItem(' + si + ',' + ci + ',' + ii + ',\'price\',this.value)" style="width:100px"></div>';
-        html += '</div>';
+        html += '<div>';
+html += '<button class="btn-del" onclick="removeItem(' + si + ',' + ci + ',' + ii + ')">🗑 Supprimer</button>';
+html += '</div>';
+		html += '</div>';
       });
       html += '<button class="btn-add" onclick="addItem(' + si + ',' + ci + ')">+ Ajouter un plat dans cette catégorie</button>';
       html += '</div>';
@@ -688,6 +691,15 @@ function updateSectionLabel(si, val) {
 
 function addItem(si, ci) {
   MENU_DATA[si].categories[ci].items.push({ name: "Nouveau plat", desc: "", price: "" });
+  renderEditor();
+  renderCarte();
+}
+
+function removeItem(si, ci, ii) {
+  if (!confirm("Supprimer ce plat ?")) return;
+
+  MENU_DATA[si].categories[ci].items.splice(ii, 1);
+
   renderEditor();
   renderCarte();
 }

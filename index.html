@@ -166,11 +166,11 @@ footer strong { color: var(--vert); }
 <!-- ═══════════════════ CARTE PUBLIQUE ═══════════════════ -->
 
 <header>
-<div class="logo-symbol">
-    <img src="croissant.png" alt="Logo Le Kashmir"></div>
   <h1>Le Kashmir</h1>
   <p class="subtitle">Gastronomie Pakistanaise &amp; Indienne</p>
   <p class="location">Sangatte</p>
+  <div class="logo-symbol">
+    <img src="croissant.png" alt="Logo Le Kashmir"></div>
   <div class="badges">
     <span class="badge">☑ Halal</span>
     <span class="badge">🚫 Sans alcool</span>
@@ -180,7 +180,7 @@ footer strong { color: var(--vert); }
 
 <div class="infos-bar">
   📍 919 Route Départementale 940, 62231 Sangatte &nbsp;|&nbsp;
-  📞 <a href="tel:+330686256306">+33 06 86 25 63 06</a> / <a href="tel:+330321360295">+33 03 21 36 02 95</a>
+  📞 <a href="tel:+33686256306">+33 (0)6 86 25 63 06</a> / <a href="tel:+33321360295">+33 (0)3 21 36 02 95</a>
 </div>
 
 <div class="notice">Tous nos prix sont TTC, service compris</div>
@@ -239,735 +239,275 @@ footer strong { color: var(--vert); }
    ================================================================ */
 var MENU_DATA = [
   {
-    "id": "boissons",
-    "label": "Boissons",
-    "categories": [
+    id: "boissons",
+    label: "Boissons",
+    categories: [
       {
-        "title": "Le Petit Béret – Sans alcool",
-        "items": [
-          {
-            "name": "Pétillant 0% Alcool",
-            "desc": "Bouteille 75 cl / Flûte 15 cl",
-            "price": "30,00 € / 7,00 €"
-          },
-          {
-            "name": "Vin Rouge 0% Alcool",
-            "desc": "Bouteille 74 cl / Verre 15 cl",
-            "price": "25,00 € / 6,00 €"
-          },
-          {
-            "name": "Vin Blanc 0% Alcool",
-            "desc": "Bouteille 74 cl / Verre 15 cl",
-            "price": "25,00 € / 6,00 €"
-          },
-          {
-            "name": "Vin Rosé 0% Alcool",
-            "desc": "Bouteille 74 cl / Verre 15 cl",
-            "price": "25,00 € / 6,00 €"
-          },
-          {
-            "name": "Bière 0% Alcool",
-            "desc": "Bouteille 33 cl",
-            "price": "9,00 €"
-          }
+        title: "Le Petit Béret – Sans alcool",
+        items: [
+          { name: "Pétillant 0% Alcool", desc: "Bouteille 75 cl / Flûte 15 cl", price: "30,00 € / 7,00 €" },
+          { name: "Vin Rouge 0% Alcool", desc: "Bouteille 74 cl / Verre 15 cl", price: "25,00 € / 6,00 €" },
+          { name: "Vin Blanc 0% Alcool", desc: "Bouteille 74 cl / Verre 15 cl", price: "25,00 € / 6,00 €" },
+          { name: "Vin Rosé 0% Alcool", desc: "Bouteille 74 cl / Verre 15 cl", price: "25,00 € / 6,00 €" },
+          { name: "Bière 0% Alcool", desc: "Bouteille 33 cl", price: "9,00 €" }
         ]
       },
       {
-        "title": "Lassis & Eaux",
-        "items": [
-          {
-            "name": "Lassi – 50 cl",
-            "desc": "Nature, Salé, Mangue, Banane, Pistache, Menthe ou Rose",
-            "price": "4,00 €"
-          },
-          {
-            "name": "Eau Minérale",
-            "desc": "50 cl / 100 cl",
-            "price": "3,50 € / 5,00 €"
-          },
-          {
-            "name": "Eau Pétillante",
-            "desc": "50 cl / 100 cl",
-            "price": "3,50 € / 5,00 €"
-          }
+        title: "Lassis & Eaux",
+        items: [
+          { name: "Lassi – 50 cl", desc: "Nature, Salé, Mangue, Banane, Pistache, Menthe ou Rose", price: "4,00 €" },
+          { name: "Eau Minérale", desc: "50 cl / 100 cl", price: "3,50 € / 5,00 €" },
+          { name: "Eau Pétillante", desc: "50 cl / 100 cl", price: "3,50 € / 5,00 €" }
         ]
       },
       {
-        "title": "Sodas & Jus",
-        "items": [
-          {
-            "name": "Sodas 33 cl",
-            "desc": "Coca, Coca Zero, Coca Cherry, Orangina, Perrier",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Sodas 25 cl",
-            "desc": "Schweppes Agrumes, Ice Tea, Fuze Tea, Sprite, Fanta Orange",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Jus de Fruits 25 cl",
-            "desc": "",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Sirop à l'eau",
-            "desc": "",
-            "price": "2,50 €"
-          },
-          {
-            "name": "Diabolo",
-            "desc": "",
-            "price": "3,00 €"
-          }
+        title: "Sodas & Jus",
+        items: [
+          { name: "Sodas 33 cl", desc: "Coca, Coca Zero, Coca Cherry, Orangina, Perrier", price: "3,50 €" },
+          { name: "Sodas 25 cl", desc: "Schweppes Agrumes, Ice Tea, Fuze Tea, Sprite, Fanta Orange", price: "3,50 €" },
+          { name: "Jus de Fruits 25 cl", desc: "", price: "3,50 €" },
+          { name: "Sirop à l'eau", desc: "", price: "2,50 €" },
+          { name: "Diabolo", desc: "", price: "3,00 €" }
         ]
       },
       {
-        "title": "Mocktails",
-        "items": [
-          {
-            "name": "Miss Lincoln",
-            "desc": "Sirop de rose, fleur de sureau, limonade, eau pétillante",
-            "price": "7,00 €"
-          },
-          {
-            "name": "Mocktail Exotique",
-            "desc": "Jus de goyave, jus d'orange, sirop de grenadine",
-            "price": "7,00 €"
-          }
+        title: "Mocktails",
+        items: [
+          { name: "Miss Lincoln", desc: "Sirop de rose, fleur de sureau, limonade, eau pétillante", price: "7,00 €" },
+          { name: "Mocktail Exotique", desc: "Jus de goyave, jus d'orange, sirop de grenadine", price: "7,00 €" }
         ]
       },
       {
-        "title": "Boissons Chaudes",
-        "items": [
-          {
-            "name": "Thé Pakistanais",
-            "desc": "Thé avec du lait",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Thé Menthe Fraîche",
-            "desc": "",
-            "price": "3,00 €"
-          },
-          {
-            "name": "Thé Cardamome",
-            "desc": "Cardamome vert",
-            "price": "3,00 €"
-          },
-          {
-            "name": "Thé Frères Damann",
-            "desc": "",
-            "price": "2,50 €"
-          },
-          {
-            "name": "Espresso / Décaféiné",
-            "desc": "",
-            "price": "2,00 €"
-          },
-          {
-            "name": "Double Espresso",
-            "desc": "",
-            "price": "2,50 €"
-          },
-          {
-            "name": "Café Crème",
-            "desc": "",
-            "price": "3,00 €"
-          }
+        title: "Boissons Chaudes",
+        items: [
+          { name: "Thé Pakistanais", desc: "Thé avec du lait", price: "3,50 €" },
+          { name: "Thé Menthe Fraîche", desc: "", price: "3,00 €" },
+          { name: "Thé Cardamome", desc: "Cardamome vert", price: "3,00 €" },
+          { name: "Thé Frères Damann", desc: "", price: "2,50 €" },
+          { name: "Espresso / Décaféiné", desc: "", price: "2,00 €" },
+          { name: "Double Espresso", desc: "", price: "2,50 €" },
+          { name: "Café Crème", desc: "", price: "3,00 €" }
         ]
       }
     ]
   },
   {
-    "id": "entrees",
-    "label": "Entrées",
-    "categories": [
+    id: "entrees",
+    label: "Entrées",
+    categories: [
       {
-        "title": "Pakoras (beignets)",
-        "items": [
-          {
-            "name": "Pakora Oignons",
-            "desc": "Beignets d'oignon",
-            "price": "5,00 €"
-          },
-          {
-            "name": "Aloo Pakora",
-            "desc": "Beignets de pomme de terre",
-            "price": "5,00 €"
-          },
-          {
-            "name": "Began Pakora",
-            "desc": "Beignets d'aubergine",
-            "price": "7,00 €"
-          },
-          {
-            "name": "Pakora Crevettes",
-            "desc": "Beignets de crevettes",
-            "price": "8,00 €"
-          },
-          {
-            "name": "Pakora Mix",
-            "desc": "Beignets d'oignons, pomme de terre et poivron vert",
-            "price": "5,50 €"
-          }
+        title: "Pakoras (beignets)",
+        items: [
+          { name: "Pakora Oignons", desc: "Beignets d'oignon", price: "5,00 €" },
+          { name: "Aloo Pakora", desc: "Beignets de pomme de terre", price: "5,00 €" },
+          { name: "Began Pakora", desc: "Beignets d'aubergine", price: "7,00 €" },
+          { name: "Pakora Crevettes", desc: "Beignets de crevettes", price: "8,00 €" },
+          { name: "Pakora Mix", desc: "Beignets d'oignons, pomme de terre et poivron vert", price: "5,50 €" }
         ]
       },
       {
-        "title": "Samossas & Raïtas",
-        "items": [
-          {
-            "name": "Sabzi Samossas",
-            "desc": "Samossas aux légumes – pomme de terre et petits pois",
-            "price": "5,00 €"
-          },
-          {
-            "name": "Samossas Viande Hachée",
-            "desc": "Viande de bœuf et petit pois",
-            "price": "7,00 €"
-          },
-          {
-            "name": "Raïta",
-            "desc": "Yaourt aux légumes et aux épices",
-            "price": "4,50 €"
-          },
-          {
-            "name": "Raïta Prawn",
-            "desc": "Yaourt aux crevettes, aux légumes et aux épices",
-            "price": "6,50 €"
-          },
-          {
-            "name": "Papadum ×2",
-            "desc": "Farine de lentille et cumin",
-            "price": "2,00 €"
-          }
+        title: "Samossas & Raïtas",
+        items: [
+          { name: "Sabzi Samossas", desc: "Samossas aux légumes – pomme de terre et petits pois", price: "5,00 €" },
+          { name: "Samossas Viande Hachée", desc: "Viande de bœuf et petit pois", price: "7,00 €" },
+          { name: "Raïta", desc: "Yaourt aux légumes et aux épices", price: "4,50 €" },
+          { name: "Raïta Prawn", desc: "Yaourt aux crevettes, aux légumes et aux épices", price: "6,50 €" },
+          { name: "Papadum ×2", desc: "Farine de lentille et cumin", price: "2,00 €" }
         ]
       },
       {
-        "title": "Cuisine au Tandoor",
-        "items": [
-          {
-            "name": "Poulet Tandoori",
-            "desc": "Poulet mariné au yaourt et aux épices puis doré au tandoor",
-            "price": "8,00 €"
-          },
-          {
-            "name": "Gambas Tandoori",
-            "desc": "Gambas marinées aux épices et aromates, cuites au tandoor",
-            "price": "19,50 €"
-          },
-          {
-            "name": "Poulet Tikka",
-            "desc": "Poulet mariné aux épices cuit en brochette au tandoor",
-            "price": "8,00 €"
-          },
-          {
-            "name": "Agneau Tikka",
-            "desc": "Agneau mariné aux épices cuit en brochette au tandoor",
-            "price": "9,00 €"
-          },
-          {
-            "name": "Poisson Tikka",
-            "desc": "Poisson mariné aux épices cuit en brochette au tandoor",
-            "price": "9,00 €"
-          },
-          {
-            "name": "Seekh Kebab",
-            "desc": "Brochette de viande hachée de bœuf épicé cuit au tandoor",
-            "price": "9,00 €"
-          },
-          {
-            "name": "Assiette Mixte",
-            "desc": "2 agneaux tikka, 2 poulets tikka, 2 poissons tikka, 2 Seekh Kebab, Pakora Mix, Raïta",
-            "price": "26,00 €"
-          }
+        title: "Cuisine au Tandoor",
+        items: [
+          { name: "Poulet Tandoori", desc: "Poulet mariné au yaourt et aux épices puis doré au tandoor", price: "8,00 €" },
+          { name: "Gambas Tandoori", desc: "Gambas marinées aux épices et aromates, cuites au tandoor", price: "19,50 €" },
+          { name: "Poulet Tikka", desc: "Poulet mariné aux épices cuit en brochette au tandoor", price: "8,00 €" },
+          { name: "Agneau Tikka", desc: "Agneau mariné aux épices cuit en brochette au tandoor", price: "9,00 €" },
+          { name: "Poisson Tikka", desc: "Poisson mariné aux épices cuit en brochette au tandoor", price: "9,00 €" },
+          { name: "Seekh Kebab", desc: "Brochette de viande hachée de bœuf épicé cuit au tandoor", price: "9,00 €" },
+          { name: "Assiette Mixte", desc: "2 agneaux tikka, 2 poulets tikka, 2 poissons tikka, 2 Seekh Kebab, Pakora Mix, Raïta", price: "26,00 €" }
         ]
       }
     ]
   },
   {
-    "id": "pains",
-    "label": "Pains & Riz",
-    "categories": [
+    id: "pains",
+    label: "Pains & Riz",
+    categories: [
       {
-        "title": "Les Pains",
-        "items": [
-          {
-            "name": "Chapati",
-            "desc": "Pain indien à pâte non levée",
-            "price": "2,00 €"
-          },
-          {
-            "name": "Nan Nature",
-            "desc": "Pain indien à pâte levée",
-            "price": "2,00 €"
-          },
-          {
-            "name": "Nan Français au Fromage",
-            "desc": "Pain au fromage",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Nan Double Fromage",
-            "desc": "Pain au fromage avec double fromage",
-            "price": "4,50 €"
-          },
-          {
-            "name": "Aloo Nan",
-            "desc": "Pain aux pommes de terre",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Garlic Nan",
-            "desc": "Pain à l'ail",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Garlic Nan Fromage",
-            "desc": "Pain au fromage et à l'ail",
-            "price": "4,00 €"
-          },
-          {
-            "name": "Kasmira Nan",
-            "desc": "Pain aux pistaches et aux amandes",
-            "price": "3,00 €"
-          },
-          {
-            "name": "Keema Nan",
-            "desc": "Pain à la viande hachée de bœuf",
-            "price": "3,50 €"
-          },
-          {
-            "name": "Poulet Tikka Cheese Nan",
-            "desc": "Pain fourré au poulet grillé avec fromage",
-            "price": "4,00 €"
-          },
-          {
-            "name": "Spicy Nan – Très relevé",
-            "desc": "Pain au gingembre, piment rouge",
-            "price": "3,50 €"
-          }
+        title: "Les Pains",
+        items: [
+          { name: "Chapati", desc: "Pain indien à pâte non levée", price: "2,00 €" },
+          { name: "Nan Nature", desc: "Pain indien à pâte levée", price: "2,00 €" },
+          { name: "Nan Français au Fromage", desc: "Pain au fromage", price: "3,50 €" },
+          { name: "Nan Double Fromage", desc: "Pain au fromage avec double fromage", price: "4,50 €" },
+          { name: "Aloo Nan", desc: "Pain aux pommes de terre", price: "3,50 €" },
+          { name: "Garlic Nan", desc: "Pain à l'ail", price: "3,50 €" },
+          { name: "Garlic Nan Fromage", desc: "Pain au fromage et à l'ail", price: "4,00 €" },
+          { name: "Kasmira Nan", desc: "Pain aux pistaches et aux amandes", price: "3,00 €" },
+          { name: "Keema Nan", desc: "Pain à la viande hachée de bœuf", price: "3,50 €" },
+          { name: "Poulet Tikka Cheese Nan", desc: "Pain fourré au poulet grillé avec fromage", price: "4,00 €" },
+          { name: "Spicy Nan – Très relevé", desc: "Pain au gingembre, piment rouge", price: "3,50 €" }
         ]
       },
       {
-        "title": "Les Riz",
-        "items": [
-          {
-            "name": "Riz Basmati",
-            "desc": "",
-            "price": "3,00 €"
-          },
-          {
-            "name": "Riz Kashmir",
-            "desc": "Riz aux fruits secs et confits – sucré",
-            "price": "4,00 €"
-          },
-          {
-            "name": "Riz Matar",
-            "desc": "Riz au petit pois",
-            "price": "4,00 €"
-          }
+        title: "Les Riz",
+        items: [
+          { name: "Riz Basmati", desc: "", price: "3,00 €" },
+          { name: "Riz Kashmir", desc: "Riz aux fruits secs et confits – sucré", price: "4,00 €" },
+          { name: "Riz Matar", desc: "Riz au petit pois", price: "4,00 €" }
         ]
       }
     ]
   },
   {
-    "id": "viandes",
-    "label": "Viandes",
-    "categories": [
+    id: "viandes",
+    label: "Viandes",
+    categories: [
       {
-        "title": "L'Agneau – 20,00 €",
-        "items": [
-          {
-            "name": "Agneau Curry",
-            "desc": "Gigot d'agneau à la sauce curry traditionnelle de l'Inde du Nord",
-            "price": ""
-          },
-          {
-            "name": "Agneau Madras",
-            "desc": "Curry de gigot d'agneau monté aux épices de l'Inde du Sud",
-            "price": ""
-          },
-          {
-            "name": "Agneau Shahi Korma",
-            "desc": "Agneau aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche",
-            "price": ""
-          },
-          {
-            "name": "Agneau Bengan",
-            "desc": "Agneau aux aubergines grillées au tandoor",
-            "price": ""
-          },
-          {
-            "name": "Agneau Vindaloo",
-            "desc": "Curry de gigot d'agneau aux pommes de terre et épices indiennes",
-            "price": ""
-          },
-          {
-            "name": "Agneau Tikka Massala",
-            "desc": "Gigot d'agneau dorés au Tandoor au beurre, aux tomates, oignons, citron et poivron",
-            "price": ""
-          },
-          {
-            "name": "Agneau Karaï",
-            "desc": "Gigot d'agneau aux oignons, tomates, gingembre et épices",
-            "price": ""
-          },
-          {
-            "name": "Agneau Palak",
-            "desc": "Agneau aux épinards dans une sauce crémeuse aux fines épices indiennes",
-            "price": ""
-          },
-          {
-            "name": "Agneau Sahi Dal",
-            "desc": "Agneau cuisiné aux lentilles indiennes dans une crème avec noix de cajou et amandes",
-            "price": ""
-          }
+        title: "L'Agneau – 20,00 €",
+        items: [
+          { name: "Agneau Curry", desc: "Gigot d'agneau à la sauce curry traditionnelle de l'Inde du Nord", price: "" },
+          { name: "Agneau Madras", desc: "Curry de gigot d'agneau monté aux épices de l'Inde du Sud", price: "" },
+          { name: "Agneau Shahi Korma", desc: "Agneau aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche", price: "" },
+          { name: "Agneau Bengan", desc: "Agneau aux aubergines grillées au tandoor", price: "" },
+          { name: "Agneau Vindaloo", desc: "Curry de gigot d'agneau aux pommes de terre et épices indiennes", price: "" },
+          { name: "Agneau Tikka Massala", desc: "Gigot d'agneau dorés au Tandoor au beurre, aux tomates, oignons, citron et poivron", price: "" },
+          { name: "Agneau Karaï", desc: "Gigot d'agneau aux oignons, tomates, gingembre et épices", price: "" },
+          { name: "Agneau Palak", desc: "Agneau aux épinards dans une sauce crémeuse aux fines épices indiennes", price: "" },
+          { name: "Agneau Sahi Dal", desc: "Agneau cuisiné aux lentilles indiennes dans une crème avec noix de cajou et amandes", price: "" }
         ]
       },
       {
-        "title": "Le Poulet – 18,00 €",
-        "items": [
-          {
-            "name": "Poulet Curry",
-            "desc": "Poulet à la sauce curry traditionnelle de l'Inde du Nord",
-            "price": ""
-          },
-          {
-            "name": "Poulet Madras",
-            "desc": "Poulet avec sauce épicée de l'Inde du Sud",
-            "price": ""
-          },
-          {
-            "name": "Poulet Vindaloo",
-            "desc": "Curry de poulet aux pommes de terre, vinaigre, ail et épices indiennes",
-            "price": ""
-          },
-          {
-            "name": "Poulet Shahi Korma",
-            "desc": "Poulet aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche",
-            "price": ""
-          },
-          {
-            "name": "Poulet au Beurre (Butter Chicken)",
-            "desc": "Poulet grillé et sa sauce au beurre",
-            "price": ""
-          },
-          {
-            "name": "Poulet Tikka Massala",
-            "desc": "Poulet cuit au Tandoor au beurre avec poivrons, tomates, oignons et citron",
-            "price": ""
-          },
-          {
-            "name": "Poulet Karaï",
-            "desc": "Poulet aux oignons, tomates, et gingembre",
-            "price": ""
-          },
-          {
-            "name": "Chilli Chicken",
-            "desc": "Poulet, oignons, tomates, poivron, ketchup et chili sauce – très épicé",
-            "price": ""
-          },
-          {
-            "name": "Poulet Palak",
-            "desc": "Poulet aux épinards dans une sauce crémeuse aux fines épices indiennes",
-            "price": ""
-          },
-          {
-            "name": "Poulet Champignons",
-            "desc": "Curry de poulet aux champignons parfumé aux épices indiennes",
-            "price": ""
-          }
+        title: "Le Poulet – 18,00 €",
+        items: [
+          { name: "Poulet Curry", desc: "Poulet à la sauce curry traditionnelle de l'Inde du Nord", price: "" },
+          { name: "Poulet Madras", desc: "Poulet avec sauce épicée de l'Inde du Sud", price: "" },
+          { name: "Poulet Vindaloo", desc: "Curry de poulet aux pommes de terre, vinaigre, ail et épices indiennes", price: "" },
+          { name: "Poulet Shahi Korma", desc: "Poulet aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche", price: "" },
+          { name: "Poulet au Beurre (Butter Chicken)", desc: "Poulet grillé et sa sauce au beurre", price: "" },
+          { name: "Poulet Tikka Massala", desc: "Poulet cuit au Tandoor au beurre avec poivrons, tomates, oignons et citron", price: "" },
+          { name: "Poulet Karaï", desc: "Poulet aux oignons, tomates, et gingembre", price: "" },
+          { name: "Chilli Chicken", desc: "Poulet, oignons, tomates, poivron, ketchup et chili sauce – très épicé", price: "" },
+          { name: "Poulet Palak", desc: "Poulet aux épinards dans une sauce crémeuse aux fines épices indiennes", price: "" },
+          { name: "Poulet Champignons", desc: "Curry de poulet aux champignons parfumé aux épices indiennes", price: "" }
         ]
       },
       {
-        "title": "Le Bœuf – 18,00 €",
-        "items": [
-          {
-            "name": "Keema Mater",
-            "desc": "Viande hachée de bœuf, gingembre, ail, petit pois, oignons",
-            "price": ""
-          },
-          {
-            "name": "Keema Aloo",
-            "desc": "Viande hachée de bœuf, oignons, tomates et pomme de terre",
-            "price": ""
-          },
-          {
-            "name": "Dal Kebab",
-            "desc": "Viande hachée de bœuf cuit au tandoor, oignons, tomates et lentilles",
-            "price": ""
-          },
-          {
-            "name": "Kebab Massala",
-            "desc": "Viande hachée de bœuf cuit au tandoor, oignons, tomates, poivrons et citron",
-            "price": ""
-          }
+        title: "Le Bœuf – 18,00 €",
+        items: [
+          { name: "Keema Mater", desc: "Viande hachée de bœuf, gingembre, ail, petit pois, oignons", price: "" },
+          { name: "Keema Aloo", desc: "Viande hachée de bœuf, oignons, tomates et pomme de terre", price: "" },
+          { name: "Dal Kebab", desc: "Viande hachée de bœuf cuit au tandoor, oignons, tomates et lentilles", price: "" },
+          { name: "Kebab Massala", desc: "Viande hachée de bœuf cuit au tandoor, oignons, tomates, poivrons et citron", price: "" }
         ]
       }
     ]
   },
   {
-    "id": "poissons",
-    "label": "Poissons",
-    "categories": [
+    id: "poissons",
+    label: "Poissons",
+    categories: [
       {
-        "title": "Poissons – 18,00 €",
-        "items": [
-          {
-            "name": "Poisson Curry",
-            "desc": "Filets de poisson sauce curry",
-            "price": ""
-          },
-          {
-            "name": "Poisson Massala",
-            "desc": "Poisson cuit au Tandoor dans une sauce aux épices, tomates, poivrons, oignons et citron",
-            "price": ""
-          },
-          {
-            "name": "Poisson Madras",
-            "desc": "Filets de poisson servis avec une sauce madras, traditionnelle de l'Inde du Sud",
-            "price": ""
-          },
-          {
-            "name": "Poisson Champignons",
-            "desc": "Filets de poisson aux champignons, tomates, oignons, crème fraîche, amandes",
-            "price": ""
-          },
-          {
-            "name": "Poisson Palak",
-            "desc": "Filets de poisson aux épinards et aux épices",
-            "price": ""
-          }
+        title: "Poissons – 18,00 €",
+        items: [
+          { name: "Poisson Curry", desc: "Filets de poisson sauce curry", price: "" },
+          { name: "Poisson Massala", desc: "Poisson cuit au Tandoor dans une sauce aux épices, tomates, poivrons, oignons et citron", price: "" },
+          { name: "Poisson Madras", desc: "Filets de poisson servis avec une sauce madras, traditionnelle de l'Inde du Sud", price: "" },
+          { name: "Poisson Champignons", desc: "Filets de poisson aux champignons, tomates, oignons, crème fraîche, amandes", price: "" },
+          { name: "Poisson Palak", desc: "Filets de poisson aux épinards et aux épices", price: "" }
         ]
       },
       {
-        "title": "Crevettes / Jinga – 18,00 €",
-        "items": [
-          {
-            "name": "Jinga Curry",
-            "desc": "Crevettes sauce curry",
-            "price": ""
-          },
-          {
-            "name": "Jinga Massala",
-            "desc": "Crevettes à la sauce aux poivrons, oignons, tomates et citron",
-            "price": ""
-          },
-          {
-            "name": "Jinga Malaï",
-            "desc": "Crevettes à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche",
-            "price": ""
-          },
-          {
-            "name": "Jinga Madras",
-            "desc": "Crevettes à la sauce madras traditionnelles de l'Inde du Sud",
-            "price": ""
-          },
-          {
-            "name": "Jinga Palak",
-            "desc": "Crevettes aux épinards et aux épices",
-            "price": ""
-          }
+        title: "Crevettes / Jinga – 18,00 €",
+        items: [
+          { name: "Jinga Curry", desc: "Crevettes sauce curry", price: "" },
+          { name: "Jinga Massala", desc: "Crevettes à la sauce aux poivrons, oignons, tomates et citron", price: "" },
+          { name: "Jinga Malaï", desc: "Crevettes à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche", price: "" },
+          { name: "Jinga Madras", desc: "Crevettes à la sauce madras traditionnelles de l'Inde du Sud", price: "" },
+          { name: "Jinga Palak", desc: "Crevettes aux épinards et aux épices", price: "" }
         ]
       },
       {
-        "title": "Gambas – 21,00 €",
-        "items": [
-          {
-            "name": "Gambas Curry",
-            "desc": "Gambas grillées au Tandoor avec sauce curry",
-            "price": ""
-          },
-          {
-            "name": "Gambas Massala",
-            "desc": "Gambas grillées au Tandoor avec sauce aux poivrons, oignons, tomates et citron",
-            "price": ""
-          },
-          {
-            "name": "Gambas Malaï",
-            "desc": "Gambas grillées au Tandoor à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche",
-            "price": ""
-          }
+        title: "Gambas – 21,00 €",
+        items: [
+          { name: "Gambas Curry", desc: "Gambas grillées au Tandoor avec sauce curry", price: "" },
+          { name: "Gambas Massala", desc: "Gambas grillées au Tandoor avec sauce aux poivrons, oignons, tomates et citron", price: "" },
+          { name: "Gambas Malaï", desc: "Gambas grillées au Tandoor à la sauce aux noix de cajou, noix de coco, amandes et crème fraîche", price: "" }
         ]
       }
     ]
   },
   {
-    "id": "veggie",
-    "label": "Végétarien",
-    "categories": [
+    id: "veggie",
+    label: "Végétarien",
+    categories: [
       {
-        "title": "Le Paneer – 12,50 €",
-        "items": [
-          {
-            "name": "Palak Paneer",
-            "desc": "Épinards avec curry de fromage indien, coriandre fraîche (selon disponibilités)",
-            "price": ""
-          },
-          {
-            "name": "Chili Paneer",
-            "desc": "Curry de fromage indien piquant, poivrons et sauce Chili (selon disponibilités)",
-            "price": ""
-          },
-          {
-            "name": "Paneer Massala",
-            "desc": "Curry de fromage indien avec oignons, poivrons vert et tomates (selon disponibilité)",
-            "price": ""
-          },
-          {
-            "name": "Butter Paneer",
-            "desc": "Paneer et sa sauce au beurre (selon disponibilité)",
-            "price": ""
-          }
+        title: "Le Paneer – 12,50 €",
+        items: [
+          { name: "Palak Paneer", desc: "Épinards avec curry de fromage indien, coriandre fraîche (selon disponibilités)", price: "" },
+          { name: "Chili Paneer", desc: "Curry de fromage indien piquant, poivrons et sauce Chili (selon disponibilités)", price: "" },
+          { name: "Paneer Massala", desc: "Curry de fromage indien avec oignons, poivrons vert et tomates (selon disponibilité)", price: "" },
+          { name: "Butter Paneer", desc: "Paneer et sa sauce au beurre (selon disponibilité)", price: "" }
         ]
       },
       {
-        "title": "Légumes – 12,00 €                                                     ",
-        "items": [
-          {
-            "name": "Mix Sabzi",
-            "desc": "Mélange de légumes",
-            "price": ""
-          },
-          {
-            "name": "Dal Tadka",
-            "desc": "Lentilles, poivrons, oignons et coriandre",
-            "price": ""
-          },
-          {
-            "name": "Dal Makhni",
-            "desc": "Lentilles préparées à la crème fraîche, noix de coco, noix de cajou et amandes",
-            "price": ""
-          },
-          {
-            "name": "Champignons Massala",
-            "desc": "Curry de champignons aux fines herbes",
-            "price": ""
-          },
-          {
-            "name": "Dal Palak",
-            "desc": "Lentilles indiennes et épinards épicés",
-            "price": ""
-          },
-          {
-            "name": "Aloo Palak",
-            "desc": "Pommes de terre et épinards épicés",
-            "price": ""
-          },
-          {
-            "name": "Bombay Potatoes",
-            "desc": "Pommes de terre, poivrons, sauce curry",
-            "price": ""
-          },
-          {
-            "name": "Potatoes Shahi Korma",
-            "desc": "Pommes de terre aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche",
-            "price": ""
-          },
-          {
-            "name": "Begun Barta",
-            "desc": "Caviar d'aubergine",
-            "price": ""
-          },
-          {
-            "name": "Pois Chiches Shahi Korma",
-            "desc": "Pois chiches avec la sauce aux noix de cajou, noix de coco, amandes et crème fraîche",
-            "price": ""
-          },
-          {
-            "name": "Pois Chiches Pomme de Terre",
-            "desc": "Pois chiches avec oignons, tomates et pommes de terre",
-            "price": ""
-          },
-          {
-            "name": "Pois Chiches Palak",
-            "desc": "Pois chiches avec épinards et sauce curry",
-            "price": ""
-          }
+        title: "Légumes (Vegan) – 12,00 €",
+        items: [
+          { name: "Mix Sabzi", desc: "Mélange de légumes", price: "" },
+          { name: "Dal Tadka", desc: "Lentilles, poivrons, oignons et coriandre", price: "" },
+          { name: "Dal Makhni", desc: "Lentilles préparées à la crème fraîche, noix de coco, noix de cajou et amandes", price: "" },
+          { name: "Champignons Massala", desc: "Curry de champignons aux fines herbes", price: "" },
+          { name: "Dal Palak", desc: "Lentilles indiennes et épinards épicés", price: "" },
+          { name: "Aloo Palak", desc: "Pommes de terre et épinards épicés", price: "" },
+          { name: "Bombay Potatoes", desc: "Pommes de terre, poivrons, sauce curry", price: "" },
+          { name: "Potatoes Shahi Korma", desc: "Pommes de terre aux noix de cajou, amandes, raisins secs, noix de coco et crème fraîche", price: "" },
+          { name: "Begun Barta", desc: "Caviar d'aubergine", price: "" },
+          { name: "Pois Chiches Shahi Korma", desc: "Pois chiches avec la sauce aux noix de cajou, noix de coco, amandes et crème fraîche", price: "" },
+          { name: "Pois Chiches Pomme de Terre", desc: "Pois chiches avec oignons, tomates et pommes de terre", price: "" },
+          { name: "Pois Chiches Palak", desc: "Pois chiches avec épinards et sauce curry", price: "" }
         ]
       }
     ]
   },
   {
-    "id": "byrianis",
-    "label": "Byrianis",
-    "categories": [
+    id: "byrianis",
+    label: "Byrianis",
+    categories: [
       {
-        "title": "Les Byrianis",
-        "items": [
-          {
-            "name": "Agneau Byriani",
-            "desc": "Agneau épicé avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati",
-            "price": "18,00 €"
-          },
-          {
-            "name": "Poulet Byriani",
-            "desc": "Poulet épicé avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati",
-            "price": "16,00 €"
-          },
-          {
-            "name": "Sabzi Byriani",
-            "desc": "Légumes épicés avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati",
-            "price": "15,00 €"
-          },
-          {
-            "name": "Crevettes Byriani",
-            "desc": "Crevettes épicées avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati",
-            "price": "18,00 €"
-          },
-          {
-            "name": "Mixte Spécial Byriani",
-            "desc": "Poulet, agneau et crevettes",
-            "price": "20,00 €"
-          }
+        title: "Les Byrianis",
+        items: [
+          { name: "Agneau Byriani", desc: "Agneau épicé avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati", price: "18,00 €" },
+          { name: "Poulet Byriani", desc: "Poulet épicé avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati", price: "16,00 €" },
+          { name: "Sabzi Byriani", desc: "Légumes épicés avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati", price: "15,00 €" },
+          { name: "Crevettes Byriani", desc: "Crevettes épicées avec tomates, crème fraîche, noix de cajou, raisins secs et amandes dans son riz basmati", price: "18,00 €" },
+          { name: "Mixte Spécial Byriani", desc: "Poulet, agneau et crevettes", price: "20,00 €" }
         ]
       }
     ]
   },
   {
-    "id": "desserts",
-    "label": "Desserts",
-    "categories": [
+    id: "desserts",
+    label: "Desserts",
+    categories: [
       {
-        "title": "Les Desserts",
-        "items": [
-          {
-            "name": "Sulji Halwa",
-            "desc": "Gâteau de semoule aux fruits secs",
-            "price": "3,00 €"
-          },
-          {
-            "name": "Kulfi",
-            "desc": "Glace indienne maison aux pistaches et cardamome",
-            "price": "4,50 €"
-          },
-          {
-            "name": "Gulab Jamun",
-            "desc": "Gâteau sirop de rose",
-            "price": "4,00 €"
-          },
-          {
-            "name": "Glaces / Sorbets",
-            "desc": "1 boule / 2 boules / 3 boules",
-            "price": "2,50 € / 3,50 € / 5,00 €"
-          }
+        title: "Les Desserts",
+        items: [
+          { name: "Sulji Halwa", desc: "Gâteau de semoule aux fruits secs", price: "3,00 €" },
+          { name: "Kulfi", desc: "Glace indienne maison aux pistaches et cardamome", price: "4,50 €" },
+          { name: "Gulab Jamun", desc: "Gâteau sirop de rose", price: "4,00 €" },
+          { name: "Glaces / Sorbets", desc: "1 boule / 2 boules / 3 boules", price: "2,50 € / 3,50 € / 5,00 €" }
         ]
       }
     ]
   },
   {
-    "id": "menu",
-    "label": "Menu Midi",
-    "categories": [
+    id: "menu",
+    label: "Menu Midi",
+    categories: [
       {
-        "title": "Menu du Midi",
-        "items": [
-          {
-            "name": "Le Thali et son Nan Français",
-            "desc": "Assortiment de plats servis dans un plateau rond. Riz basmati, crudités, légumes, raïta et Nan Fromage. Plat : Poulet Tikka ou Mix Pakora. Dessert : Glace 1 boule (hors Kulfi) ou Sulji Halwa. Uniquement sur place, du lundi au vendredi midi hors week-end et jours fériés.",
-            "price": "15,00 €"
-          }
+        title: "Menu du Midi",
+        items: [
+          { name: "Le Thali et son Nan Français", desc: "Assortiment de plats servis dans un plateau rond. Riz basmati, crudités, légumes, raïta et Nan Fromage. Plat : Poulet Tikka ou Mix Pakora. Dessert : Glace 1 boule (hors Kulfi) ou Sulji Halwa. Uniquement sur place, du lundi au vendredi midi hors week-end et jours fériés.", price: "15,00 €" }
         ]
       }
     ]

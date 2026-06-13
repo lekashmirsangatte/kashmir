@@ -1007,7 +1007,19 @@ var MENU_DATA = [
 var GITHUB_OWNER = "lekashmirsangatte";   // nom d'utilisateur GitHub
 var GITHUB_REPO  = "kashmir";              // nom du dépôt
 var GITHUB_FILE  = "index.html";           // fichier à mettre à jour
-var EDITOR_PASSWORD = "AliCélineKashmir62!";
+// netlify/functions/check-login.js
+
+exports.handler = async (event) => {
+
+  const { password } = JSON.parse(event.body);
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      valid: password === process.env.EDITOR_PASSWORD
+    })
+  };
+};
 fetch('/.netlify/functions/save-menu', {
   method: 'POST',
   body: JSON.stringify({
@@ -1133,9 +1145,23 @@ function closeLogin() {
   document.getElementById('login-pwd').value = '';
   document.getElementById('login-error').style.display = 'none';
 }
-function checkLogin() {
+async function checkLogin() {
+
   var pwd = document.getElementById('login-pwd').value;
-  if (pwd === EDITOR_PASSWORD) {
+
+  const res = await fetch('/.netlify/functions/check-login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      password: pwd
+    })
+  });
+
+  const data = await res.json();
+
+  if (data.valid) {
     closeLogin();
     openEditor();
   } else {

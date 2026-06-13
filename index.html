@@ -1007,26 +1007,7 @@ var MENU_DATA = [
 var GITHUB_OWNER = "lekashmirsangatte";   // nom d'utilisateur GitHub
 var GITHUB_REPO  = "kashmir";              // nom du dépôt
 var GITHUB_FILE  = "index.html";           // fichier à mettre à jour
-// netlify/functions/check-login.js
 
-exports.handler = async (event) => {
-
-  const { password } = JSON.parse(event.body);
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      valid: password === process.env.EDITOR_PASSWORD
-    })
-  };
-};
-fetch('/.netlify/functions/save-menu', {
-  method: 'POST',
-  body: JSON.stringify({
-    menu: MENU_DATA
-  })
-});
-	
 /* ================================================================
    RENDU DE LA CARTE PUBLIQUE
    ================================================================ */

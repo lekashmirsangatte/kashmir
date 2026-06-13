@@ -1244,52 +1244,39 @@ renderCarte();
    SAUVEGARDE SUR GITHUB
    ================================================================ */
 async function saveToGitHub() {
-  var token = GITHUB_TOKEN;
+
   var btn = document.getElementById('btn-save');
+
   btn.disabled = true;
+
   setStatus('', '⏳ Publication en cours…');
 
   try {
-    // 1. Récupérer le fichier actuel (source réel + SHA)
-    var metaRes = await fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE, {
-      headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
-    });
-    var meta = await metaRes.json();
-    if (!meta.sha) throw new Error('Impossible de lire le fichier sur GitHub. Vérifiez le token.');
 
-    // 2. Décoder le source original depuis base64
-    var sourceHtml = decodeURIComponent(escape(atob(meta.content.replace(/\n/g, ''))));
-
-    // 3. Générer le nouveau contenu avec les données à jour
-    var newContent = buildNewFile(sourceHtml);
-    if (newContent === sourceHtml) throw new Error('Le contenu n\'a pas pu être mis à jour. Contactez le support.');
-
-    // 4. Encoder en base64 et pousser
-    var encoded = btoa(unescape(encodeURIComponent(newContent)));
-    var putRes = await fetch('https://api.github.com/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + GITHUB_FILE, {
-      method: 'PUT',
+    const res = await fetch('/.netlify/functions/save-menu', {
+      method: 'POST',
       headers: {
-        'Authorization': 'token ' + token,
-        'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        message: 'Mise à jour de la carte via éditeur',
-        content: encoded,
-        sha: meta.sha
+        menuData: MENU_DATA
       })
     });
 
-    if (putRes.ok) {
-      setStatus('ok', '✅ Publié ! La carte sera à jour dans ~2 minutes.');
-      renderCarte();
-    } else {
-      var err = await putRes.json();
-      throw new Error(err.message || 'Erreur GitHub');
+    const result = await res.json();
+
+    if (!result.success) {
+      throw new Error(result.error || 'Erreur inconnue');
     }
+
+    setStatus('ok', '✅ Carte publiée !');
+
   } catch(e) {
+
     setStatus('err', '❌ ' + e.message);
+
   }
+
   btn.disabled = false;
 }
 

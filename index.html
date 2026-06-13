@@ -1008,8 +1008,13 @@ var GITHUB_OWNER = "lekashmirsangatte";   // nom d'utilisateur GitHub
 var GITHUB_REPO  = "kashmir";              // nom du dépôt
 var GITHUB_FILE  = "index.html";           // fichier à mettre à jour
 var EDITOR_PASSWORD = "AliCélineKashmir62!";
-var GITHUB_TOKEN = ["github_pat_11CENJCXI0a","xaInOFW313O_IW4OTzdFSP","q1UgG8EnWJf1BJND5iZ0DIbajqJp661W0UK6KO5MITKTvxSkT"].join("");       // mot de passe de l'éditeur
-
+fetch('/.netlify/functions/save-menu', {
+  method: 'POST',
+  body: JSON.stringify({
+    menu: MENU_DATA
+  })
+});
+	
 /* ================================================================
    RENDU DE LA CARTE PUBLIQUE
    ================================================================ */

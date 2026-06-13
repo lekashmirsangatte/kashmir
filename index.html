@@ -111,7 +111,7 @@ footer strong { color: var(--vert); }
 /* ============================================================
    BOUTON EDITEUR (discret, coin bas droite)
    ============================================================ */
-#edit-trigger { position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 999; background: var(--noir); color: var(--vert); border: 1px solid var(--vert); border-radius: 999px; padding: .5rem 1rem; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; opacity: .6; transition: opacity .2s; }
+#edit-trigger { position: fixed; bottom: 1.2rem; right: 1.2rem; z-index: 999; background: var(--noir); color: var(--vert); border: 1px solid var(--vert); border-radius: 999px; padding: .5rem 1rem; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; opacity: .15; transition: opacity .2s; }
 #edit-trigger:hover { opacity: 1; }
 
 /* ============================================================
@@ -199,7 +199,7 @@ footer strong { color: var(--vert); }
   Prix TTC, service compris
 </footer>
 
-<button id="edit-trigger" onclick="openLogin()">⚙ Modifier la carte</button>
+<button id="edit-trigger" onclick="openLogin()">⚙</button>
 
 <!-- ═══════════════════ MODAL LOGIN ═══════════════════ -->
 <div class="modal-overlay" id="login-modal">
@@ -966,24 +966,36 @@ var MENU_DATA = [
       }
     ]
   },
-  {
-    "id": "menu",
-    "label": "Menu (uniquement sur place) / Menu (only on site)",
-    "categories": [
+{
+  "id": "menu",
+  "label": "Menu (uniquement sur place) / Menu (only on site)",
+  "badge": "🕐 Lun – Ven · Midi uniquement · Sur place seulement · Hors week-ends & jours fériés <br> Mon-Fri · Lunch only · Eat in only · Excluding weekends & public holidays",
+  "note": "Tout changement entraîne une tarification à la carte<br>Any modification will be charged at à la carte prices",
+  "categories": [
       {
-        "title": "Menu du Midi",
-        "items": [
-          {
-            "name": "Le Thali et son Nan Français ",
-            "desc": "Assortiment de plats servis dans un plateau rond. Riz basmati, crudités, légumes, raïta et Nan Fromage. Plat : Poulet Tikka ou Mix Pakora. Dessert : Glace 1 boule (hors Kulfi) ou Sulji Halwa. Uniquement sur place, du lundi au vendredi midi hors week-end et jours fériés ",
-            "price": "15,00 €"
-          },
-          {
-            "name": "The Thali and a cheese Nan",
-            "desc": "The Thali is an assortment of dishes served in a round metal tray: Basmati rice, raw vegetables, vegetables and raïta.\nchoose: Chicken tikka or mix pakora.\n\nDessert: 1 scoop of icecream (excluding kulfi) or sulji Halwa.\n\nOnly on site for lunch except weekends and official holidays.",
-            "price": "15,00 €"
-          }
-        ]
+"title": "Le Thali et son Nan Fromage<br><span style='font-size:.8em'>The Thali with Cheese Naan</span>",
+ "items": [
+{
+  "name": "🍽 Riz basmati, crudités, légumes et raïta",
+  "desc": "Basmati rice, vegetables and raïta",
+  "price": ""
+},
+{
+  "name": "🍞 Nan fromage inclus",
+  "desc": "Cheese naan included",
+  "price": ""
+},
+{
+  "name": "🍗 Poulet Tikka ou Mix Pakora",
+  "desc": "Chicken Tikka or Mix Pakora",
+  "price": ""
+},
+{
+  "name": "🍨 Glace 1 boule ou Sulji Halwa",
+  "desc": "1 scoop ice cream or Sulji Halwa",
+  "price": "15,00 €"
+}
+]
       }
     ]
   }
@@ -1003,29 +1015,53 @@ var GITHUB_TOKEN = ["github_pat_11CENJCXI0a","xaInOFW313O_IW4OTzdFSP","q1UgG8EnW
    ================================================================ */
 function renderMenuMidi(section) {
   var html = '<div style="padding:1rem 0">';
-  // Badge disponibilité
-  html += '<div class="midi-badge">🕐 Lun – Ven · Midi uniquement · Sur place seulement · Hors week-ends &amp; jours fériés</div>';
+
+  html += '<div class="midi-badge">' + (section.badge || '') + '</div>';
+
   section.categories.forEach(function(cat) {
-    cat.items.forEach(function(item) {
-      html += '<div class="midi-card">';
-      // En-tête prix
-      html += '<div class="midi-header"><div class="midi-title">' + item.name + '</div><div class="midi-price">' + item.price + '</div></div>';
-      // Détail des composantes
-      var parts = item.desc.split('.');
-      html += '<div class="midi-body">';
-      // Plateau
-      html += '<div class="midi-row"><span class="midi-icon">🍽</span><span>Plateau Thali · Riz basmati, crudités, légumes &amp; raïta</span></div>';
-      html += '<div class="midi-row"><span class="midi-icon">🫓</span><span>Nan Fromage inclus</span></div>';
-      // Plat au choix
-      html += '<div class="midi-row"><span class="midi-icon">⭐</span><span><strong>Plat au choix :</strong> Poulet Tikka <em>ou</em> Mix Pakora</span></div>';
-      // Dessert au choix
-      html += '<div class="midi-row"><span class="midi-icon">🍨</span><span><strong>Dessert :</strong> Glace 1 boule (hors Kulfi) <em>ou</em> Sulji Halwa</span></div>';
-      html += '</div>';
-      html += '<div class="midi-note">Tout changement entraîne une tarification à la carte</div>';
-      html += '</div>';
+
+    html += '<div class="midi-card">';
+
+    html += '<div class="midi-header">';
+    html += '<div class="midi-title">' + cat.title + '</div>';
+
+    var prix = '';
+    cat.items.forEach(function(item){
+      if(item.price){
+        prix = item.price;
+      }
     });
+
+    html += '<div class="midi-price">' + prix + '</div>';
+    html += '</div>';
+
+    html += '<div class="midi-body">';
+
+    cat.items.forEach(function(item,index){
+
+      html += '<div class="midi-row">';
+      html += '<div>';
+      html += '<strong>' + item.name + '</strong>';
+
+      if(item.desc){
+        html += '<br>' + item.desc;
+      }
+
+      html += '</div>';
+      html += '</div>';
+
+    });
+
+    html += '</div>';
+
+    html += '<div class="midi-note">' + (section.note || '') + '</div>';
+
+    html += '</div>';
+
   });
+
   html += '</div>';
+
   return html;
 }
 function renderTabs() {
